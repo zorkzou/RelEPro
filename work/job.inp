@@ -1,0 +1,10 @@
+$contrl
+ prop='+ed+efg'
+ iham=6
+ minz=-26
+$end
+
+$qcdata
+ fnam="test.molden"
+$end
+
