@@ -2248,7 +2248,7 @@ Subroutine PowerPAB(if1c,MaxSize,MaxLa,MaxLb,aa,bb,gg,Ra,Rb,tmp,pab)
   use Constant, only : Zero, One
   implicit real(kind=8) (a-h,o-z)
   logical if1c
-  dimension Ra(3),Rb(3),tmp(*),pab(MaxSize+1,2,3)
+  dimension Ra(3),Rb(3),tmp(*),pab(MaxSize+1,2,3),gg(*)
 
   if(if1c) pab = Zero
   do ix=1,3                               ! x,y,z
@@ -2256,7 +2256,7 @@ Subroutine PowerPAB(if1c,MaxSize,MaxLa,MaxLb,aa,bb,gg,Ra,Rb,tmp,pab)
     pab(1,2,ix) = One
     if(if1c) cycle
 
-    tmp(1)=(aa*Ra(ix)+bb*Rb(ix))/gg       ! P
+    tmp(1)=(aa*Ra(ix)+bb*Rb(ix))/gg(1)       ! P
     tmp(2)=tmp(1)-Ra(ix)                  ! PA
     tmp(3)=tmp(1)-Rb(ix)                  ! PB
     do im=2,MaxLa+1

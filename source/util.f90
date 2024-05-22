@@ -2812,7 +2812,7 @@ subroutine prtcoord(iout,NAtm,IZA,XYZ)
     'No.   Atom    ZA                 X             Y             Z',/,1x,70('-'))")
 
   do i=1,NAtm
-    call ElemZA(1,Elm,IZA(i),Elm)
+    call ElemZA(1,Elm,IZA(i),(XYZ(1,i)*au2ang))
     write(iout,"(i6,4x,a3,1x,i5,8x,3f14.8)") i,Elm,IZA(i),(XYZ(j,i)*au2ang,j=1,3)
   end do
 
