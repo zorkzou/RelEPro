@@ -1,0 +1,117 @@
+ =============================================================================
+ ==  RelEPro: a program to calculate relativistic one-electron properties.  ==
+ ==                                                                         ==
+ ==                                            Ver. 1.2.1,  Jun 03, 2024    ==
+ =============================================================================
+
+
+ Tue Jun 04 16:41:25 2024
+
+ One-electron properties to be computed on the computer LAPTOP-5OKF3IEP
+
+  (   ) electric dipole moment (DIP)
+  ( x ) effective contact density (ED)
+  ( x ) contact density with PC effects (CD)
+  ( x ) electric field gradient (EFG)
+
+
+ The file fe_new.molden in the MOLDEN format has been found.
+
+ Number of atoms                      :      11
+ Max L                                :       4
+ Number of primitive shells           :     236
+ Number of contracted basis functions :     414 (car.)     372 (sph.)
+ Number of primitive basis functions  :     564 (car.)     522 (sph.)
+ MOs are printed in                   :     Cartesian functions
+
+ ### Warning: Cartesian functions may lead to numerical errors.
+
+ Cartesian coordinates of atoms (in Angstrom)
+ ----------------------------------------------------------------------
+   No.   Atom    ZA                 X             Y             Z
+ ----------------------------------------------------------------------
+     1    Fe     26            0.00333000    0.00006000   -0.00001000
+     2    C       6            1.81182000   -0.00028000    0.00017000
+     3    C       6           -0.91604000    1.55696000    0.00006000
+     4    C       6           -0.91602000   -1.55681000   -0.00024000
+     5    C       6            0.01213000    0.00005000   -1.81307000
+     6    C       6            0.01256000    0.00019000    1.81304000
+     7    O       8            2.96490000   -0.00076000    0.00051000
+     8    O       8           -1.50696000    2.54696000    0.00007000
+     9    O       8           -1.50684000   -2.54687000   -0.00050000
+    10    O       8            0.02012000    0.00004000   -2.96109000
+    11    O       8            0.02100000    0.00045000    2.96106000
+ ----------------------------------------------------------------------
+
+ Computing density matrix in spherical functions ...
+
+ Computing one-electron integrals ...
+
+ Constructing Hamiltonian ...
+   This is a sf-X2C/DLU calculation.
+
+ Computing density matrix in the dimension of primitive spherical functions ...
+
+ Checking density matrix
+   Sum of nuclear charges                      :   96.0000
+   Sum of MO occupations                       :   96.0000
+   Analytically integrated number of electrons :   96.0000
+   Net charge                                  :    0.0000
+
+ Performing density matrix transformation for properties ...
+
+
+                       .-----------------------.
+                       |  P R O P E R T I E S  |
+                       `-----------------------`
+
+
+ effective contact density (ED)
+ ==============================
+
+ Relativistic ED for the atoms with Za =  26
+ ---------------------------------------------------------------
+   No.   Atom   ZA     RMS (fm)      RG (fm)          Rho (a.u.)
+ ---------------------------------------------------------------
+     1    Fe    26      3.76842      3.07690         16293.03097
+ ---------------------------------------------------------------
+
+
+ contact density with PC effects (CD)
+ ====================================
+
+ Relativistic CD for the atoms with Za =  26
+ ---------------------------------------------------------------
+   No.   Atom   ZA     RMS (fm)                       Rho (a.u.)
+ ---------------------------------------------------------------
+     1    Fe    26      3.76842                      16424.81025
+ ---------------------------------------------------------------
+
+
+ electric field gradient (EFG)
+ =============================
+
+ Relativistic EFG for the atoms with Za =  26
+ ----------------------------------------------------------------------------------------------------------
+   No.   Atom   ZA     RMS (fm)          EFG eigen. (a.u.)                       EFG tensor (a.u.)
+ ----------------------------------------------------------------------------------------------------------
+     1    Fe    26      3.76842         Vaa =     -0.83938             -0.83938      -0.00003       0.00037
+                                        Vbb =     -0.89024             -0.00003      -0.89024       0.00009
+                                        Vcc =      1.72962              0.00037       0.00009       1.72962
+
+                                        eta =      0.02940
+
+                                        eQq =     65.02413 MHz  with  Q(Fe - 57) =   160.00 millibarn
+                                        dEq =     32.51675 MHz  or      2.79719 mm/s for (57)Fe
+
+                                        Nuclear contributions          -0.08528      -0.00011       0.00025
+                                                                       -0.00011      -0.10591       0.00014
+                                                                        0.00025       0.00014       0.19119
+
+                                        Electronic contributions       -0.75410       0.00008       0.00012
+                                                                        0.00008      -0.78433      -0.00005
+                                                                        0.00012      -0.00005       1.53843
+
+ ----------------------------------------------------------------------------------------------------------
+
+ Tue Jun 04 16:41:34 2024

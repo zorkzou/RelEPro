@@ -1,0 +1,86 @@
+ =============================================================================
+ ==  RelEPro: a program to calculate relativistic one-electron properties.  ==
+ ==                                                                         ==
+ ==                                            Ver. 1.2.1,  Jun 03, 2024    ==
+ =============================================================================
+
+
+ Tue Jun 04 12:39:06 2024
+
+ One-electron properties to be computed on the computer LAPTOP-5OKF3IEP
+
+  (   ) electric dipole moment (DIP)
+  (   ) effective contact density (ED)
+  (   ) contact density with PC effects (CD)
+  ( x ) electric field gradient (EFG)
+
+
+ The file cuf-cct_new.molden in the MOLDEN format has been found.
+
+ Number of atoms                      :       2
+ Max L                                :       4
+ Number of primitive shells           :      62
+ Number of contracted basis functions :     166 (car.)     142 (sph.)
+ Number of primitive basis functions  :     192 (car.)     168 (sph.)
+ MOs are printed in                   :     Cartesian functions
+
+ ### Warning: Cartesian functions may lead to numerical errors.
+
+ Cartesian coordinates of atoms (in Angstrom)
+ ----------------------------------------------------------------------
+   No.   Atom    ZA                 X             Y             Z
+ ----------------------------------------------------------------------
+     1    F       9            0.00000000    0.00000000   -1.34331727
+     2    Cu     29            0.00000000    0.00000000    0.40161273
+ ----------------------------------------------------------------------
+
+ Computing density matrix in spherical functions ...
+
+ Computing one-electron integrals ...
+
+ Constructing Hamiltonian ...
+   This is a sf-X2C/DLU calculation.
+
+ Computing density matrix in the dimension of primitive spherical functions ...
+
+ Checking density matrix
+   Sum of nuclear charges                      :   38.0000
+   Sum of MO occupations                       :   38.0000
+   Analytically integrated number of electrons :   38.0000
+   Net charge                                  :    0.0000
+
+ Performing density matrix transformation for properties ...
+
+
+                       .-----------------------.
+                       |  P R O P E R T I E S  |
+                       `-----------------------`
+
+
+ electric field gradient (EFG)
+ =============================
+
+ Relativistic EFG for the atoms with Za =  29
+ ----------------------------------------------------------------------------------------------------------
+   No.   Atom   ZA     RMS (fm)          EFG eigen. (a.u.)                       EFG tensor (a.u.)
+ ----------------------------------------------------------------------------------------------------------
+     2    Cu    29      3.89649         Vaa =      0.22431              0.22431      -0.00000       0.00000
+                                        Vbb =      0.22431             -0.00000       0.22431      -0.00000
+                                        Vcc =     -0.44862              0.00000      -0.00000      -0.44862
+
+                                        eta =      0.00000
+
+                                        eQq =     23.19026 MHz  with  Q(Cu - 63) =  -220.00 millibarn
+                                                  21.50370              Cu - 65     -204.00
+
+                                        Nuclear contributions          -0.25102       0.00000       0.00000
+                                                                        0.00000      -0.25102       0.00000
+                                                                        0.00000       0.00000       0.50204
+
+                                        Electronic contributions        0.47533      -0.00000       0.00000
+                                                                       -0.00000       0.47533      -0.00000
+                                                                        0.00000      -0.00000      -0.95067
+
+ ----------------------------------------------------------------------------------------------------------
+
+ Tue Jun 04 12:39:07 2024
