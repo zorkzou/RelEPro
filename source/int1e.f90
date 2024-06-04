@@ -934,7 +934,7 @@ subroutine NAI1Cmain(MaxXYZ,MaxSum,LpVp,ISO,NAtoms,NSHELL,R0,ZA,Ra,Rb,Rc,FNorm,e
         ! powers of 1/(4*Gamma)
         call EpsPower(LQSum,gg(1),Epsp)
         ! powers of PA and PB (1-center)
-        call PowerPAB(.true.,LQSum,ITYPE+LpVp,JTYPE+LpVp,aa,bb,gg,Ra,Rb,tmp,pab)
+        call PowerPAB(.true.,LQSum,ITYPE+LpVp,JTYPE+LpVp,aa,bb,gg(1),Ra,Rb,tmp,pab)
         ! Integrals calculation
         dV = Zero
         call NAImunu(LQSum,MaxXYZ,NDerRQ,LpVp,ISO,e0,NEle,dV,gg,Epsp,facdat,prefw,aa,Ra,ITYPE, bb,Rb,JTYPE, LPat,R0(Iatm),  &
@@ -1105,7 +1105,7 @@ subroutine NAImain(MaxXYZ,MaxSum,LpVp,ISO,NTT,NAtoms,NSHELL,IRMS,NEle,R0,ZA,Coor
       ! powers of 1/(4*Gamma)
       call EpsPower(LQSum,gg(1),Epsp)
       ! powers of PA and PB
-      call PowerPAB(.false.,LQSum,ITYPE+LpVp,JTYPE+LpVp,aa,bb,gg,Ra,Rb,tmp,pab)
+      call PowerPAB(.false.,LQSum,ITYPE+LpVp,JTYPE+LpVp,aa,bb,gg(1),Ra,Rb,tmp,pab)
 
 !-----LOOP OVER ATOMS
       DO IAtom = IAtom1,IAtom2

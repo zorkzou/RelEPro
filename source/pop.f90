@@ -73,7 +73,7 @@ subroutine population(iout,natom,np,irelc,maxtyp,iza,za,mxla,ialbs,nshlla,smat,p
   write(iout,"(3x,'No.   Atom   ZA        QA    QA for L =',i5,10(5x,i5))") (i, i=0,mxl)
   write(iout,"(1x,106('-'))")
   do i = 1, natom
-    call ElemZA(1,Elm,iza(i),Elm)
+    call ElemZA(1,Elm,iza(i))
     write(iout,"(i5,5x,a3,i5,f10.3,9x,10f10.4)") i, Elm, iza(i), chl(-1,i), chl(0:mxla(i),i)
   end do
   write(iout,"(1x,106('-'))")
@@ -119,9 +119,9 @@ subroutine population(iout,natom,np,irelc,maxtyp,iza,za,mxla,ialbs,nshlla,smat,p
   end do
 
   do i = 1, natom-1
-    call ElemZA(1,Elmi,iza(i),Elmi)
+    call ElemZA(1,Elmi,iza(i))
     do j = i+1, natom
-      call ElemZA(1,Elmj,iza(j),Elmj)
+      call ElemZA(1,Elmj,iza(j))
       tmp = Zero
       do iq = 0, mxla(i)
         do jq = 0, mxla(j)
@@ -203,9 +203,9 @@ subroutine population(iout,natom,np,irelc,maxtyp,iza,za,mxla,ialbs,nshlla,smat,p
   end do
 
   do i = 1, natom-1
-    call ElemZA(1,Elmi,iza(i),Elmi)
+    call ElemZA(1,Elmi,iza(i))
     do j = i+1, natom
-      call ElemZA(1,Elmj,iza(j),Elmj)
+      call ElemZA(1,Elmj,iza(j))
       tmp = Zero
       do iq = 0, mxla(i)
         do jq = 0, mxla(j)

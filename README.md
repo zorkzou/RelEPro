@@ -3,6 +3,10 @@ RelEPro (renamed from RelED) is a utility program to calculate one-electron prop
 the eXact 2-Component (X2C) all-electron quasi-relativistic Hamiltonian and its local approximations.
 
 ## Recent Changes
+Version 1.2.1 (June 04, 2024).
+
+1. Several incompatibilities with gfortran 10+ have been fixed.
+
 Version 1.2.0 (May 14, 2024).
 
 1. The first released version.

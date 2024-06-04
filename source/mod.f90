@@ -1,7 +1,7 @@
 MODULE Constant
 
-  character*5            :: Ver="1.2.0"
-  character*12           :: Date="May 14, 2024"
+  character*5            :: Ver="1.2.1"
+  character*12           :: Date="Jun 03, 2024"
 
   integer,parameter      :: maxlq=5   ! max LQ number for MOLDEN (5=H)
   ! integer,parameter      :: maxlq_G=6 ! max LQ number for Gaussian FCHK (6=I)

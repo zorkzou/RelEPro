@@ -129,7 +129,10 @@ Subroutine open_dfile(iinp,iout,ifham,ifpro,ifdbg,irel,NIOP,IOP,NJob,JobTyp,imod
  popu = 0
  irel = 1  ! 1c / 2c
 
- rewind(iinp)
+ ! the first rewind is not needed by ifort:
+ ! warning (499): REWIND is a no-op on terminal device
+ !rewind(iinp)
+
  read(iinp,Contrl,end=100,err=10)
  goto 100
  10  write(iout,"(/,' $Contrl is wrong!')")
@@ -1719,7 +1722,7 @@ subroutine rd_fchk_1(iout,imod,ctmp,natom,nmo)
  1100 write(iout,"(' ### Error in rd_fchk_1.')")
  call estop(1)
  return
-end
+end subroutine rd_fchk_1
 
 !%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 !
@@ -1923,7 +1926,7 @@ subroutine rd_fchk_2(iout,imod,igto,irelc,ctmp, natom, nmo, maxtyp, ispher, ncba
  1100 write(iout,"(' ### Error in rd_fchk_2 (1).')")
  call estop(1)
  return
-end
+end subroutine rd_fchk_2
 
 !%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 !
@@ -1965,7 +1968,7 @@ subroutine rd_fchk_3(iout,imod,ctmp,natom,ifecp,iza,za,xyz)
  1200 write(iout,"(' ### Error in rd_fchk_3 (2).')")
  call estop(1)
  return
-end
+end subroutine rd_fchk_3
 
 !%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 !
@@ -2057,7 +2060,7 @@ subroutine rd_fchk_4(iout,imod,irelc,nbas,nmo,occtot,occ,ene,ispn,symm,ctmp,cmo,
  1500 write(iout,"(' ### Error in rd_fchk_4 (5). The number of MOs is wrong!')")
  call estop(1)
  return
-end
+end subroutine rd_fchk_4
 
 !%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 !
@@ -2113,7 +2116,7 @@ subroutine rd_fchk_den(iout,imod,iden,irelc,nbas,ctmp,den)
  1200 write(iout,"(' ### Error in rd_fchk_den (2).')")
  call estop(1)
  return
-end
+end subroutine rd_fchk_den
 
 !%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 !
@@ -2187,7 +2190,7 @@ subroutine rd_molden_1(iout,imod,ctmp,natom,nmo)
  1300 write(iout,"(' ### Error in rd_molden_1 (3).')")
  call estop(1)
  return
-end
+end subroutine rd_molden_1
 
 !%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 !
@@ -2366,7 +2369,7 @@ subroutine rd_molden_2(iout,imod,igto,ctmp,clqdat, natom, maxtyp, ispher, ncbas,
  1400 write(iout,"(' ### Error in rd_molden_2 (4).')")
  call estop(1)
  return
-end
+end subroutine rd_molden_2
 
 !%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 !
@@ -2392,8 +2395,8 @@ subroutine rd_molden_3(iout,imod,ctmp,natom,iza,za,xyz)
 
  do i = 1, natom
    read(imod,*,err=1200,end=1200) ctmp, j, iza(i), xyz(:,i)
-   call ElemZA(0,ctmp,j,atmp)
-   if(iza(i) /= nint(atmp)) then
+   call ElemZA(0,ctmp,j)
+   if(iza(i) /= j) then
      write(iout,"(' ### Error: PP cannot be used for all-electron relativistic calculation.')")
      call estop(1)
    end if
@@ -2410,7 +2413,7 @@ subroutine rd_molden_3(iout,imod,ctmp,natom,iza,za,xyz)
  1200 write(iout,"(' ### Error in rd_molden_3 (2).')")
  call estop(1)
  return
-end
+end subroutine rd_molden_3
 
 !%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 !
@@ -2477,7 +2480,7 @@ subroutine rd_molden_4(iout,imod,nbas,nmo,occtot,occ,ene,ispn,symm,ctmp,cmo)
  1300 write(iout,"(' ### Error in rd_molden_4 (3).')")
  call estop(1)
  return
-end
+end subroutine rd_molden_4
 
 !%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 !
@@ -2529,7 +2532,7 @@ subroutine rd_basfun(iout,igto,natom,mxla,nshlla,ialbs,ialbc,iptexp,iptcon,gtoex
  1300 write(iout,"(' ### Error in rd_basfun.')")
  call estop(1)
  return
-end
+end subroutine rd_basfun
 
 !%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ! Search for unique atoms according to their atomic charges and primitive basis functions
@@ -2812,7 +2815,7 @@ subroutine prtcoord(iout,NAtm,IZA,XYZ)
     'No.   Atom    ZA                 X             Y             Z',/,1x,70('-'))")
 
   do i=1,NAtm
-    call ElemZA(1,Elm,IZA(i),Elm)
+    call ElemZA(1,Elm,IZA(i))
     write(iout,"(i6,4x,a3,1x,i5,8x,3f14.8)") i,Elm,IZA(i),(XYZ(j,i)*au2ang,j=1,3)
   end do
 
@@ -2904,11 +2907,11 @@ end subroutine RotCons
 
 !%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 !
-! Mode = 0 : returns nuclear charge zchar for an element symbol "el"; iza is not used.
-!     /= 0 : returns element symbol "el" for nuclear charge iza; zchar is not used.
+! Mode = 0 : returns nuclear charge iza for an element symbol "el".
+!     /= 0 : returns element symbol "el" for nuclear charge iza.
 !
 !%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-subroutine ElemZA(Mode,el,iza,zchar)
+subroutine ElemZA(Mode,el,iza)
   implicit real(kind=8) (a-h,o-z)
   parameter (maxza=120)
   character*3 :: el,atomlib(maxza)
@@ -2924,10 +2927,10 @@ subroutine ElemZA(Mode,el,iza,zchar)
   if (Mode == 0) then
 
     call charl2u(el)
-    zchar = 0.d0
+    iza = 0
     do i=1,maxza
       if(index(el,atomlib(i)) /= 0)then
-        zchar = dble(i)
+        iza = i
         exit
       end if
     end do

@@ -1,0 +1,10 @@
+$contrl
+ prop='+efg'
+ iham=5
+ minz=-29
+$end
+
+$qcdata
+ fnam="cuf.fchk"
+$end
+

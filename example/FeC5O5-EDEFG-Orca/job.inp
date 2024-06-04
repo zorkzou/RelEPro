@@ -1,0 +1,15 @@
+dEq of Fe
+BHandHLYP  2.80  mm/s
+Expt.      2.57  mm/s
+Ref. Inorg. Chem. 2013, 52, 14205
+
+$contrl
+ prop='+cd+ed+efg'
+ iham=5
+ minz=-26
+$end
+
+$qcdata
+ fnam="fe_new.molden"
+$end
+
