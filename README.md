@@ -77,14 +77,15 @@ to get the one-electron property ∂E/∂μ. For theoretical details, please ref
 * ED by X2C (called Dirac-exact NESC at that time): [Ref.1](#references)
 * ED by X2C and its local approximations: [Ref.2](#references)
 * EFG by X2C (called Dirac-exact NESC at that time): [Ref.3](#references)
+* EFG by X2C and its local approximations: [Ref.4](#references)
 
 The local X2C Hamiltonians have been defiend in the following papers.
 If there is no HA-HA bond in a molecule (HA: 5*d* or heavier atoms),
 the most efficient approximations DLU and AU are usually accurate enough.
-* AXR (atomic **X** with full **R**), originally called FATM (from atoms to molecules): [Ref.4](#references)
+* AXR (atomic **X** with full **R**), originally called FATM (from atoms to molecules): [Ref.5](#references)
 * DLXR (diagonal local **X** with full **R**) and DLU (diagonal
-local unitary transformation): [Ref.5](#references)
-* AU (atomic unitary transformation): [Ref.6](#references)
+local unitary transformation): [Ref.6](#references)
+* AU (atomic unitary transformation): [Ref.7](#references)
 
 ## Compilation
 
@@ -151,8 +152,8 @@ Q2  x2  y2  z2
 
 ### `$NQMDat` group (optional for EFG)
 
-In the NQCC and Mössbauer NQS calculations, the nuclear quadrupole moment (NQM) parameters of common nuclides are taken from [Ref.7](#references).
-The NQM parameters of the other nuclides may be found in [Refs.8-10](#references) and provided after the `$NQMDat` group (in millibarn).
+In the NQCC and Mössbauer NQS calculations, the nuclear quadrupole moment (NQM) parameters of common nuclides are taken from [Ref.8](#references).
+The NQM parameters of the other nuclides may be found in [Refs.9-11](#references) and provided after the `$NQMDat` group (in millibarn).
 ```plaintext
 $nqmdat $end
 i_Atom  NQM_value_i
@@ -173,13 +174,15 @@ J. Chem. Theory Comput., 8:875–882, 2012. [DOI: 10.1021/ct2008632](https://doi
 Phys. Chem. Chem. Phys., 22:26776–26786, 2020. [DOI: 10.1039/d0cp04549g](https://doi.org/10.1039/D0CP04549G)
 3. M. Filatov, W. Zou, and D. Cremer. *Relativistically Corrected Electric Field Gradients Calculated with the Normalized Elimination of the Small Component Formalism*.
 J. Chem. Phys., 137:054113, 2012. [DOI: 10.1063/1.4742175](https://dx.doi.org/10.1063/1.4742175)
-4. D. Peng, W. Liu, Y. Xiao, and L. Cheng. *Making four- and two-component relativistic density functional methods fully equivalent based on the idea of "from atoms to molecule"*.
+4. W. Li, M. Filatov, and W. Zou. *Calculation of electric field gradients with the exact two-component (X2C) quasi-relativistic method and its local approximations*.
+Phys. Chem. Chem. Phys., 26:18333–18342, 2024. [DOI: 10.1039/d4cp01567c](https://doi.org/10.1039/D4CP01567C)
+5. D. Peng, W. Liu, Y. Xiao, and L. Cheng. *Making four- and two-component relativistic density functional methods fully equivalent based on the idea of "from atoms to molecule"*.
 J. Chem. Phys., 127:104106, 2007. [DOI: 10.1063/1.2772856](https://doi.org/10.1063/1.2772856)
-5. D. Peng and M. Reiher. *Local relativistic exact decoupling*. J. Chem. Phys., 136:244108, 2012. [DOI: 10.1063/1.4729788](https://doi.org/10.1063/1.4729788)
-6. W. Zou, G. Guo, B. Suo, and W. Liu. *Analytic Energy Gradients and Hessians of Exact Two-Component Relativistic Methods: Efficient Implementation and Extensive Applications*. J. Chem. Theory Comput., 16:1541-1554, 2020. [DOI: 10.1021/acs.jctc.9b01120](https://doi.org/10.1021/acs.jctc.9b01120)
-7. P. Pyykkö. *Year-2017 nuclear quadrupole moments*. Mol. Phys., 116:1328–1338, 2018. [DOI: 10.1080/00268976.2018.1426131](https://doi.org/10.1080/00268976.2018.1426131)
-8. W. Hüttner, editor. *Dipole Moments, Quadrupole Coupling Constants, Hindered Rotation and Magnetic Interaction Constants of Diamagnetic Molecules*. Springer, Berlin, 2002.
-9. N. J. Stone. Table of nuclear electric quadrupole moments. Atomic Data and Nuclear Data Tables,
+6. D. Peng and M. Reiher. *Local relativistic exact decoupling*. J. Chem. Phys., 136:244108, 2012. [DOI: 10.1063/1.4729788](https://doi.org/10.1063/1.4729788)
+7. W. Zou, G. Guo, B. Suo, and W. Liu. *Analytic Energy Gradients and Hessians of Exact Two-Component Relativistic Methods: Efficient Implementation and Extensive Applications*. J. Chem. Theory Comput., 16:1541-1554, 2020. [DOI: 10.1021/acs.jctc.9b01120](https://doi.org/10.1021/acs.jctc.9b01120)
+8. P. Pyykkö. *Year-2017 nuclear quadrupole moments*. Mol. Phys., 116:1328–1338, 2018. [DOI: 10.1080/00268976.2018.1426131](https://doi.org/10.1080/00268976.2018.1426131)
+9. W. Hüttner, editor. *Dipole Moments, Quadrupole Coupling Constants, Hindered Rotation and Magnetic Interaction Constants of Diamagnetic Molecules*. Springer, Berlin, 2002.
+10. N. J. Stone. Table of nuclear electric quadrupole moments. Atomic Data and Nuclear Data Tables,
 111-112:1–28, 2016. [DOI: 10.1016/j.adt.2015.12.002](http://dx.doi.org/10.1016/j.adt.2015.12.002)
-10. N. J. Stone. *Table of nuclear electric quadrupole moments*. [Technical Report No. INDC(NDS)-0833](https://www-nds.iaea.org/publications/indc/indc-nds-0833/), International Atomic
+11. N. J. Stone. *Table of nuclear electric quadrupole moments*. [Technical Report No. INDC(NDS)-0833](https://www-nds.iaea.org/publications/indc/indc-nds-0833/), International Atomic
 Energy Agency, INDC International Nuclear Data Committee, Austria, October 2021.
