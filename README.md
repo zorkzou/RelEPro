@@ -62,7 +62,7 @@ be converted to an "official" form with the help of
 | Molpro       | ≥ 2019  | sf-X2C, sf-DKHn          | MOLDEN                       |
 | MRCC         |         | sf-X2C                   | MOLDEN; through CFour        |
 | NWChem       | ≥ 7.0   | sf-DKH2, sf-DKH3, sf-X2C | MOLDEN                       |
-| ORCA         |         | sf-DKH2                  | MOLDEN                       |
+| ORCA         | ≥ 6.0   | sf-DKH2, sf-X2C          | MOLDEN                       |
 | PySCF        |         | sf-X2C                   | MOLDEN                       |
 | Turbomole    | ≥ 7.3   | sf-X2C, sf-BSS, sf-DKHn  | MOLDEN                       |
 
