@@ -125,7 +125,7 @@ These options may also be combined together. For example, `prop='+efg+ed'` will 
 
 `iham` specifies the Hamiltonian. Its options are 0 (=4), 1 (non-relativistic), 2 (X2C), 3 (X2C-DLXR), 4 (X2C-AXR), 5 (X2C-DLU), 6 (X2C-AU).
 
-`minz` specifies the atoms to calculate CD, ED, or EFG. Ir can be 0 (all the atoms), < 0 (heavy atoms with Z = |minz|), or > 0 (heavy atoms with Z ≥ minz).
+`minz` specifies the atoms to calculate CD, ED, or EFG. It can be 0 (all the atoms), < 0 (heavy atoms with Z = |minz|), or > 0 (heavy atoms with Z ≥ minz).
 
 `popu = 1` does population analysis for ED and EFG. For EFG, however, population analysis of spinor orbitals has not been implemented yet.
 
