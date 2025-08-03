@@ -1521,10 +1521,8 @@ subroutine efgcalc(iout,mpatt,irelc,natom,iham,minza,ipop,iza,za,rms,xyz,maxtyp,
 
    write(iout,"(/,26x,'<< Mossbauer Nuclear Quadrupole Splitting >>')")
    call Mosslib(iza(iatom),niso,iziso,is2,iex,egm,qvl)
-   iso0 = 0
    if(niso > 0) then
      do i = 1, niso  ! niso <= maxiso
-       iso0 = iso0 + 1
        scr(isc1) = fac2 * dRval_dEq(is2(i)) * efgeig(3) * qvl(i)
        ! I = 3/2 only
        if(is2(i) == 3) scr(isc1) = scr(isc1) * sqrt(1.0d0 + eta*eta/3.0d0)
@@ -1537,11 +1535,9 @@ subroutine efgcalc(iout,mpatt,irelc,natom,iham,minza,ipop,iza,za,rms,xyz,maxtyp,
        end if
        write(iout,"(43x,'=',f13.5,' mm/s with Eg =',f9.2,' KeV')") fac3*scr(isc1)/egm(i), egm(i)
      end do
-   end if
-   if(iso0 == 0) then
-     write(iout,"(29x,'N.A.')")
-   else
      write(iout,"(/,29x,'NOTE. The term sqrt(1 + eta * eta / 3) is included in dEq only for I = 3/2.')")
+   else
+     write(iout,"(29x,'N.A.')")
    end if
 
    if(ipop0 == 1) then
