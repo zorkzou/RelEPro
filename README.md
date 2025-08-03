@@ -3,6 +3,10 @@ RelEPro (renamed from RelED) is a utility program to calculate one-electron prop
 the eXact 2-Component (X2C) all-electron quasi-relativistic Hamiltonian and its local approximations.
 
 ## Recent Changes
+Version 1.3.0 (August 03, 2025).
+
+1. The Mössbauer nuclear quadrupole splitting of common nuclides in [Ref.10](#references) may be calculated.
+
 Version 1.2.1 (June 04, 2024).
 
 1. Several incompatibilities with gfortran 10+ have been fixed.
@@ -22,7 +26,7 @@ Properties:
 * electric dipole moment (DIP)
 * contact density (CD) <sup>(1,2)</sup> with the picture-change-error correction, being used to study the Mössbauer isomer shift (IS)
 * effective contact density (ED) <sup>(1,2)</sup>, being used to study the Mössbauer isomer shift (IS)
-* electric field gradient (EFG) <sup>(2)</sup> as well as the related nuclear quadrupole coupling constant (NQCC) and Mössbauer nuclear quadrupole splitting (NQS) for <sup>57</sup>Fe
+* electric field gradient (EFG) <sup>(2)</sup> as well as the related nuclear quadrupole coupling constant (NQCC) and Mössbauer nuclear quadrupole splitting (NQS)
 
 <font size=2>
 
@@ -153,7 +157,7 @@ Q2  x2  y2  z2
 ### `$NQMDat` group (optional for EFG)
 
 In the NQCC and Mössbauer NQS calculations, the nuclear quadrupole moment (NQM) parameters of common nuclides are taken from [Ref.8](#references).
-The NQM parameters of the other nuclides may be found in [Refs.9-11](#references) and provided after the `$NQMDat` group (in millibarn).
+The NQM parameters of the other nuclides may be found in [Refs.9-10](#references) and provided after the `$NQMDat` group (in millibarn).
 ```plaintext
 $nqmdat $end
 i_Atom  NQM_value_i
@@ -168,21 +172,17 @@ They have to be split into *s*- and *p*-shells and reordered.
 
 <a id="references"></a>
 ## References
-1. M. Filatov, W. Zou, and D. Cremer. *Analytic calculation of contact densities and Mössbauer isomer shifts using the normalized elimination of the small-component formalism*.
-J. Chem. Theory Comput., 8:875–882, 2012. [DOI: 10.1021/ct2008632](https://doi.org/10.1021/ct2008632)
+1. M. Filatov, W. Zou, and D. Cremer. *Analytic calculation of contact densities and Mössbauer isomer shifts using the normalized elimination of the small-component formalism*. J. Chem. Theory Comput., 8:875–882, 2012. [DOI: 10.1021/ct2008632](https://doi.org/10.1021/ct2008632)
 2. H. Zhu, C. Gao, M. Filatov, and W. Zou. *Mössbauer isomer shifts and effective contact densities obtained by the exact two-component (X2C) relativistic method and its local variants*.
 Phys. Chem. Chem. Phys., 22:26776–26786, 2020. [DOI: 10.1039/d0cp04549g](https://doi.org/10.1039/D0CP04549G)
-3. M. Filatov, W. Zou, and D. Cremer. *Relativistically Corrected Electric Field Gradients Calculated with the Normalized Elimination of the Small Component Formalism*.
-J. Chem. Phys., 137:054113, 2012. [DOI: 10.1063/1.4742175](https://dx.doi.org/10.1063/1.4742175)
+3. M. Filatov, W. Zou, and D. Cremer. *Relativistically Corrected Electric Field Gradients Calculated with the Normalized Elimination of the Small Component Formalism*. J. Chem. Phys., 137:054113, 2012. [DOI: 10.1063/1.4742175](https://dx.doi.org/10.1063/1.4742175)
 4. W. Li, M. Filatov, and W. Zou. *Calculation of electric field gradients with the exact two-component (X2C) quasi-relativistic method and its local approximations*.
 Phys. Chem. Chem. Phys., 26:18333–18342, 2024. [DOI: 10.1039/d4cp01567c](https://doi.org/10.1039/D4CP01567C)
-5. D. Peng, W. Liu, Y. Xiao, and L. Cheng. *Making four- and two-component relativistic density functional methods fully equivalent based on the idea of "from atoms to molecule"*.
-J. Chem. Phys., 127:104106, 2007. [DOI: 10.1063/1.2772856](https://doi.org/10.1063/1.2772856)
+5. D. Peng, W. Liu, Y. Xiao, and L. Cheng. *Making four- and two-component relativistic density functional methods fully equivalent based on the idea of "from atoms to molecule"*. J. Chem. Phys., 127:104106, 2007. [DOI: 10.1063/1.2772856](https://doi.org/10.1063/1.2772856)
 6. D. Peng and M. Reiher. *Local relativistic exact decoupling*. J. Chem. Phys., 136:244108, 2012. [DOI: 10.1063/1.4729788](https://doi.org/10.1063/1.4729788)
 7. W. Zou, G. Guo, B. Suo, and W. Liu. *Analytic Energy Gradients and Hessians of Exact Two-Component Relativistic Methods: Efficient Implementation and Extensive Applications*. J. Chem. Theory Comput., 16:1541-1554, 2020. [DOI: 10.1021/acs.jctc.9b01120](https://doi.org/10.1021/acs.jctc.9b01120)
 8. P. Pyykkö. *Year-2017 nuclear quadrupole moments*. Mol. Phys., 116:1328–1338, 2018. [DOI: 10.1080/00268976.2018.1426131](https://doi.org/10.1080/00268976.2018.1426131)
-9. W. Hüttner, editor. *Dipole Moments, Quadrupole Coupling Constants, Hindered Rotation and Magnetic Interaction Constants of Diamagnetic Molecules*. Springer, Berlin, 2002.
-10. N. J. Stone. Table of nuclear electric quadrupole moments. Atomic Data and Nuclear Data Tables,
+9. N. J. Stone. Table of nuclear electric quadrupole moments. Atomic Data and Nuclear Data Tables,
 111-112:1–28, 2016. [DOI: 10.1016/j.adt.2015.12.002](http://dx.doi.org/10.1016/j.adt.2015.12.002)
-11. N. J. Stone. *Table of nuclear electric quadrupole moments*. [Technical Report No. INDC(NDS)-0833](https://www-nds.iaea.org/publications/indc/indc-nds-0833/), International Atomic
+10. N. J. Stone. *Table of nuclear electric quadrupole moments*. [Technical Report No. INDC(NDS)-0833](https://www-nds.iaea.org/publications/indc/indc-nds-0833/), International Atomic
 Energy Agency, INDC International Nuclear Data Committee, Austria, October 2021.

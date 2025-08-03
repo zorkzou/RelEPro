@@ -1,7 +1,7 @@
 MODULE Constant
 
-  character*5            :: Ver="1.2.1"
-  character*12           :: Date="Jun 03, 2024"
+  character*5            :: Ver="1.3.0"
+  character*12           :: Date="Aug 03, 2025"
 
   integer,parameter      :: maxlq=5   ! max LQ number for MOLDEN (5=H)
   ! integer,parameter      :: maxlq_G=6 ! max LQ number for Gaussian FCHK (6=I)
@@ -27,6 +27,7 @@ MODULE Constant
   real(kind=8),parameter :: Three=3.0d0
   real(kind=8),parameter :: au2wvn=219474.63137d0
   real(kind=8),parameter :: au2ang=0.52917720859d0
+  real(kind=8),parameter :: kev2mhz=2.417988d0
   real(kind=8),parameter :: clight=137.035999074d0
   real(kind=8),parameter :: clight_si=2.99792458d10
   real(kind=8),parameter :: au2deb=2.541746231d0

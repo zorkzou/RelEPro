@@ -1328,15 +1328,17 @@ end subroutine efgcalclo
 !%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 subroutine efgcalc(iout,mpatt,irelc,natom,iham,minza,ipop,iza,za,rms,xyz,maxtyp,nshell,npcar,npsph,mxla,nshlla,gtoexp,c2scoef,  &
  pv,pw, npchg,pchg,pxyz,qdat, nmo,occ,ene,ispn,symm,cr,cu, scr,lscr)
- use Constant, only : t33nam, maxlq, au2wvn, clight_si, au2ang, Zero, One, f_4cc, occtol
+ use Constant, only : t33nam, maxlq, au2wvn, clight_si, au2ang, kev2mhz, Zero, One, f_4cc, occtol
  implicit real*8(A-H,O-Z)
+ parameter(maxiso=3)
  character*10  :: symm
  dimension     :: iza(natom), za(natom), rms(natom), xyz(3,natom), mxla(natom), nshlla(0:maxlq,natom), gtoexp(*), c2scoef(*),  &
                   pv(npsph*npsph,*), pw(npsph*npsph,*), pchg(*), pxyz(3,*), qdat(2,natom), &
                   occ(nmo), ene(nmo), ispn(nmo), symm(nmo), cr(npsph*irelc*nmo,irelc), cu(npsph*irelc*nmo,irelc), scr(lscr)
- allocatable   :: dvm(:,:), efglt(:,:), efgsq(:,:), efgeig(:), d1(:,:), d2(:), d5(:), iziso(:)
+ allocatable   :: dvm(:,:), efglt(:,:), efgsq(:,:), efgeig(:), d1(:,:), d2(:), d5(:)
  allocatable   :: I0(:),IW(:),popefg(:,:,:)
- character*3   :: Elm
+ allocatable   :: iziso(:), is2(:), iex(:), egm(:), qvl(:)
+ character*3   :: Elm, Cst(2)
 
  fac1 = sqrt(1.5d0) * 1.0d5 * au2ang
 !  NOTE. to eQq in MHz: CB * eQ (in barn) * Vqq(a.u.), where
@@ -1344,10 +1346,13 @@ subroutine efgcalc(iout,mpatt,irelc,natom,iham,minza,ipop,iza,za,rms,xyz,maxtyp,
 !       = 219474.63137 * 2.99792458e10 * 1.0e-14 / (0.5291772083^2) = 234.96478
 !  See p. 406 in Computer Physics Communications 74, 399 (1993).
  fac2 = au2wvn * clight_si * 1.0d-14 / (au2ang * au2ang)
- fac2 = fac2 * 1.0d-3   ! millibarn to barn
+ fac2 = fac2 * 1.0d-3   ! * millibarn to barn
+ fac3 = clight_si * 1.0d-10 / kev2mhz
  ntt  = npcar*(npcar+1)/2
  nss  = npcar*npcar
  npss = npsph*npsph
+
+ Cst = (/'gr.','ex.'/)
 
  ! single-value density matrices
  if(irelc == 1) then
@@ -1401,7 +1406,8 @@ subroutine efgcalc(iout,mpatt,irelc,natom,iham,minza,ipop,iza,za,rms,xyz,maxtyp,
    write(iout,"(1x,106('-'),/,'   No.   Atom   ZA     RMS (fm)',10x,'EFG eigen. (a.u.)',23x,'EFG tensor (a.u.)',/,1x,106('-'))")
  end if
 
- allocate(dvm(ntt,6), efglt(6,3), efgsq(3,3), efgeig(3), d1(3,natom+npchg), d2(natom+npchg), d5(natom+npchg), iziso(3))
+ allocate(dvm(ntt,6), efglt(6,3), efgsq(3,3), efgeig(3), d1(3,natom+npchg), d2(natom+npchg), d5(natom+npchg),  &
+   iziso(maxiso), is2(maxiso), iex(maxiso), egm(maxiso), qvl(maxiso))
 
  do iatom = 1, natom
    if(minza < 0) then
@@ -1490,38 +1496,56 @@ subroutine efgcalc(iout,mpatt,irelc,natom,iham,minza,ipop,iza,za,rms,xyz,maxtyp,
    ! d1 and scr are used for scratch
    if(npchg == 0) call efgfix(iout,natom,xyz,eta,efgeig,efgsq, d1,scr(isc1))
 
-   if(nint(qdat(1,iatom)) == 0) then
-     call NQMlib(iza(iatom),niso,iziso,scr(isc1))
-   else
-     niso = 1
-     iziso(1) = 0
-     scr(isc1) = qdat(2,iatom)
-   end if
-   if(niso > 0) then
-     scr(isc1+niso) = fac2*efgeig(3)*scr(isc1)
-     write(iout,"(/,40x,'eQq =',f13.5,' MHz  with  Q(',a3,'-',i3,') =',f9.2,' millibarn')") scr(isc1+niso),  &
-       Elm,iziso(1),scr(isc1)
-     ! dEq for 57Fe
-     if(iza(iatom) == 26 .and. iziso(1) == 57) then
-       scr(isc1+niso+1) = 0.5d0 * scr(isc1+niso) * sqrt(1.0d0 + eta*eta/3.0d0)
-       write(iout,"(40x,'dEq =',f13.5,' MHz  or',f13.5,' mm/s for (57)Fe')") scr(isc1+niso+1), scr(isc1+niso+1)/11.6248d0 
-     end if
-     do i = 2, niso  ! niso <= 3
-       scr(isc1+niso) = fac2*efgeig(3)*scr(isc1+i-1)
-       write(iout,"(45x,f13.5,14x,a3,'-'i3,3x,f9.2)") scr(isc1+niso), Elm, iziso(i), scr(isc1+i-1)
-     end do
-   else
-     write(iout,"(/,40x,'eQq :      N.A.')")
-   end if
-
    call LT2Sqr(0,3,efglt(1,2),efgsq)
    write(iout,"(/,40x,'Nuclear contributions    ',3f14.5,2(/,65x,3f14.5))") efgsq
    call LT2Sqr(0,3,efglt(1,1),efgsq)
    write(iout,"(/,40x,'Electronic contributions ',3f14.5,2(/,65x,3f14.5))") efgsq
    write(iout,*)
 
+   write(iout,"(26x,'<< Nuclear Quadrupole Coupling Constant >>')")
+   if(nint(qdat(1,iatom)) == 0) then
+     call NQMlib(iza(iatom),niso,iziso,qvl)
+   else
+     niso = 1
+     iziso(1) = 0
+     qvl(1) = qdat(2,iatom)
+   end if
+   if(niso > 0) then
+     do i = 1, niso  ! niso <= maxiso
+       scr(isc1) = fac2 * efgeig(3) * qvl(i)
+       write(iout,"(29x,a3,'-',i3,':  eQq =',f13.5,' MHz  with  Q =',f9.2,' millibarn')") Elm, iziso(i), scr(isc1), qvl(i)
+     end do
+   else
+     write(iout,"(29x,'N.A.')")
+   end if
+
+   write(iout,"(/,26x,'<< Mossbauer Nuclear Quadrupole Splitting >>')")
+   call Mosslib(iza(iatom),niso,iziso,is2,iex,egm,qvl)
+   iso0 = 0
+   if(niso > 0) then
+     do i = 1, niso  ! niso <= maxiso
+       iso0 = iso0 + 1
+       scr(isc1) = fac2 * dRval_dEq(is2(i)) * efgeig(3) * qvl(i)
+       ! I = 3/2 only
+       if(is2(i) == 3) scr(isc1) = scr(isc1) * sqrt(1.0d0 + eta*eta/3.0d0)
+       if(mod(is2(i),2) == 0) then
+         write(iout,"(29x,a3,'-',i3,':  dEq =',f13.5,' MHz  with  Q =',f9.2,' millibarn & I =',i3,2x,'(',a3,')')")  &
+           Elm, iziso(i), scr(isc1), qvl(i), is2(i)/2, Cst(iex(i)+1)
+       else
+         write(iout,"(29x,a3,'-',i3,':  dEq =',f13.5,' MHz  with  Q =',f9.2,' millibarn & I =',i2,'/2 (',a3,')')")  &
+           Elm, iziso(i), scr(isc1), qvl(i), is2(i), Cst(iex(i)+1)
+       end if
+       write(iout,"(43x,'=',f13.5,' mm/s with Eg =',f9.2,' KeV')") fac3*scr(isc1)/egm(i), egm(i)
+     end do
+   end if
+   if(iso0 == 0) then
+     write(iout,"(29x,'N.A.')")
+   else
+     write(iout,"(/,29x,'NOTE. The term sqrt(1 + eta * eta / 3) is included in dEq only for I = 3/2.')")
+   end if
+
    if(ipop0 == 1) then
-     write(iout,"(11x,'#MO      Irrep  S',10x,'Ene',8x,'Occ',12x,'dV/dQ sum',10x,'dV/dQ population on atoms')")
+     write(iout,"(/,11x,'#MO      Irrep  S',10x,'Ene',8x,'Occ',12x,'dV/dQ sum',10x,'dV/dQ population on atoms')")
      do imo = 1, nmo
        if(abs(occ(imo)) < occtol) cycle
        scr(isc1) = Zero
@@ -1542,7 +1566,7 @@ subroutine efgcalc(iout,mpatt,irelc,natom,iham,minza,ipop,iza,za,rms,xyz,maxtyp,
 
  end do
 
- deallocate(dvm, efglt, efgsq, efgeig, d1, d2, d5, iziso)
+ deallocate(dvm, efglt, efgsq, efgeig, d1, d2, d5, iziso, is2, iex, egm, qvl)
 
  if(ipop0 == 1) then
    write(iout,"(1x,132('-'))")

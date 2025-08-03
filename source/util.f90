@@ -2956,6 +2956,9 @@ end subroutine ElemZA
 ! Bi-209.
 ! J.-P. Dognon and P. Pyykko, Determining nuclear quadrupole moments of Bi and Sb from molecular data, Phys. Chem. Chem. Phys.
 ! 25, 2758-2761 (2023).
+! Co-60,Kr-81,Nb-91/92,I-129,Cs-134/135/137,La-137,Sm-151,Lu-174,Bi-207/208,Ra-223.
+! N. J. Stone. Table of nuclear electric quadrupole moments. International Atomic Energy Agency, INDC International Nuclear Data
+! Committee, Austria, Technical Report Nos. INDC(NDS)-0658, February 2014 and INDC(NDS)-0833, October 2021.
 !%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 subroutine NQMlib(iz,ndat,iso,eqv)
  implicit real(kind=8) (a-h,o-z)
@@ -3053,9 +3056,9 @@ subroutine NQMlib(iz,ndat,iso,eqv)
      iso(1:ndat) = (/57/)
      eqv(1:ndat) = (/160.0d0/)
    case(27)
-     ndat = 1
-     iso(1:ndat) = (/59/)
-     eqv(1:ndat) = (/420.0d0/)
+     ndat = 2
+     iso(1:ndat) = (/59,60/)
+     eqv(1:ndat) = (/420.0d0,460.0d0/)
    case(28)
      ndat = 1
      iso(1:ndat) = (/61/)
@@ -3089,9 +3092,9 @@ subroutine NQMlib(iz,ndat,iso,eqv)
      iso(1:ndat) = (/79,81/)
      eqv(1:ndat) = (/308.7d0,257.9d0/)
    case(36)
-     ndat = 1
-     iso(1:ndat) = (/83/)
-     eqv(1:ndat) = (/259.0d0/)
+     ndat = 2
+     iso(1:ndat) = (/81,83/)
+     eqv(1:ndat) = (/644.0d0,259.0d0/)
    case(37)
      ndat = 2
      iso(1:ndat) = (/85,87/)
@@ -3109,9 +3112,9 @@ subroutine NQMlib(iz,ndat,iso,eqv)
      iso(1:ndat) = (/91/)
      eqv(1:ndat) = (/-176.0d0/)
    case(41)
-     ndat = 1
-     iso(1:ndat) = (/93/)
-     eqv(1:ndat) = (/-320.0d0/)
+     ndat = 3
+     iso(1:ndat) = (/91,92,93/)
+     eqv(1:ndat) = (/-250.0d0,-350.0d0,-320.0d0/)
    case(42)
      ndat = 2
      iso(1:ndat) = (/95,97/)
@@ -3145,25 +3148,25 @@ subroutine NQMlib(iz,ndat,iso,eqv)
      iso(1:ndat) = (/121,123/)
      eqv(1:ndat) = (/-543.0d0,-692.0d0/)
    case(53)
-     ndat = 1
-     iso(1:ndat) = (/127/)
-     eqv(1:ndat) = (/-688.22d0/)
+     ndat = 2
+     iso(1:ndat) = (/127,129/)
+     eqv(1:ndat) = (/-688.22d0,-483.0d0/)
    case(54)
      ndat = 1
      iso(1:ndat) = (/131/)
      eqv(1:ndat) = (/-114.6d0/)
    case(55)
-     ndat = 1
-     iso(1:ndat) = (/133/)
-     eqv(1:ndat) = (/-3.43d0/)
+     ndat = 4
+     iso(1:ndat) = (/133,134,135,137/)
+     eqv(1:ndat) = (/-3.43d0,370.0d0,48.0d0,48.0d0/)
    case(56)
      ndat = 2
      iso(1:ndat) = (/135,137/)
      eqv(1:ndat) = (/153.0d0,236.0d0/)
    case(57)
-     ndat = 2
-     iso(1:ndat) = (/138,139/)
-     eqv(1:ndat) = (/450.0d0,206.0d0/)
+     ndat = 3
+     iso(1:ndat) = (/137,138,139/)
+     eqv(1:ndat) = (/210.0d0,450.0d0,206.0d0/)
    case(59)
      ndat = 1
      iso(1:ndat) = (/141/)
@@ -3177,13 +3180,13 @@ subroutine NQMlib(iz,ndat,iso,eqv)
      iso(1:ndat) = (/147/)
      eqv(1:ndat) = (/740.0d0/)
    case(62)
-     ndat = 2
-     iso(1:ndat) = (/147,149/)
-     eqv(1:ndat) = (/-259.0d0,75.0d0/)
+     ndat = 3
+     iso(1:ndat) = (/147,149,151/)
+     eqv(1:ndat) = (/-259.0d0,75.0d0,710.0d0/)
    case(63)
-     ndat = 2
-     iso(1:ndat) = (/151,153/)
-     eqv(1:ndat) = (/903.0d0,2412.0d0/)
+     ndat = 3
+     iso(1:ndat) = (/151,153,155/)
+     eqv(1:ndat) = (/903.0d0,2412.0d0,2490.0d0/)
    case(64)
      ndat = 2
      iso(1:ndat) = (/155,157/)
@@ -3209,9 +3212,9 @@ subroutine NQMlib(iz,ndat,iso,eqv)
      iso(1:ndat) = (/173/)
      eqv(1:ndat) = (/2800.0d0/)
    case(71)
-     ndat = 2
-     iso(1:ndat) = (/175,176/)
-     eqv(1:ndat) = (/3490.0d0,4970.0d0/)
+     ndat = 3
+     iso(1:ndat) = (/174,175,176/)
+     eqv(1:ndat) = (/773.0d0,3490.0d0,4970.0d0/)
    case(72)
      ndat = 2
      iso(1:ndat) = (/177,179/)
@@ -3245,11 +3248,11 @@ subroutine NQMlib(iz,ndat,iso,eqv)
      iso(1:ndat) = (/209/)
      eqv(1:ndat) = (/-269.0d0/)
    case(83)
-     ndat = 1
-     iso(1:ndat) = (/209/)
-     ! eqv(1:ndat) = (/-516.0d0/)
-     ! new NQM value by Pyykko. see PCCP 25, 2758 (2023).
-     eqv(1:ndat) = (/-422.0d0/)
+     ndat = 3
+     iso(1:ndat) = (/207,208,209/)
+     ! eqv(1:ndat) = (/-760.0d0,-700.0d0,-516.0d0/)
+     ! new NQM value of Bi-209 by Pyykko. see PCCP 25, 2758 (2023).
+     eqv(1:ndat) = (/-760.0d0,-700.0d0,-422.0d0/)
    case(86)
      ndat = 1
      iso(1:ndat) = (/209/)
@@ -3258,6 +3261,10 @@ subroutine NQMlib(iz,ndat,iso,eqv)
      ndat = 1
      iso(1:ndat) = (/211/)
      eqv(1:ndat) = (/-210.0d0/)
+   case(88)
+     ndat = 1
+     iso(1:ndat) = (/223/)
+     eqv(1:ndat) = (/1220.0d0/)
    case(89)
      ndat = 1
      iso(1:ndat) = (/227/)
@@ -3294,6 +3301,392 @@ subroutine NQMlib(iz,ndat,iso,eqv)
 
  return
 end subroutine NQMlib
+
+!%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+!
+! Mossbauer isotopic data with E_gamma < 200 KeV. See sub. NQMlib for the literature. Some E_gamma energies are taken from
+! Gutlich, Bill, Trautwein, Mossbauer Spectroscopy and Transition Metal Chemistry, Springer, 2011.
+!
+! niso : the number of Mossbauer isotopes
+! iso  : Mossbauer isotope(s)
+! is2  : twice the nuclear spin quantum number
+! iex  : 0 for the ground and 1 for the 1-st excited states
+! egm  : the 1-st excitation energy (E_gamma) in KeV
+! qvl  : nuclear quadrupole moment (Q) in millibarn
+!
+! * If is2 = 0 or 1, the Q value of the 1-st excited state will be used for the nuclear quadrupole splitting (e.g. Fe-57).
+!
+!%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+subroutine Mosslib(iz,niso,iso,is2,iex,egm,qvl)
+ implicit real(kind=8) (a-h,o-z)
+ parameter(maxiso=3)
+ integer      :: iso(maxiso), is2(maxiso), iex(maxiso)
+ real(kind=8) :: egm(maxiso), qvl(maxiso)
+
+ niso = 0
+ iso  = 0
+ is2  = 0
+ iex  = 0
+ egm  = 0.0d0
+ qvl  = 0.0d0
+
+ select case(iz)
+   case(19)
+     niso = 1
+     iso(1:niso) = (/40/)
+     is2(1:niso) = (/8/)
+     iex(1:niso) = (/0/)
+     egm(1:niso) = (/29.560d0/)
+     qvl(1:niso) = (/-75.0d0/)
+   case(21)
+     niso = 1
+     iso(1:niso) = (/45/)
+     is2(1:niso) = (/3/)
+     iex(1:niso) = (/1/)
+     egm(1:niso) = (/12.400d0/)
+     qvl(1:niso) = (/280.0d0/)
+   case(22)
+     niso = 1
+     iso(1:niso) = (/47/)
+     is2(1:niso) = (/5/)
+     iex(1:niso) = (/0/)
+     egm(1:niso) = (/159.000d0/)
+     qvl(1:niso) = (/302.0d0/)
+   case(26)
+     niso = 1
+     iso(1:niso) = (/57/)
+     is2(1:niso) = (/3/)
+     iex(1:niso) = (/1/)
+     egm(1:niso) = (/14.413d0/)
+     qvl(1:niso) = (/160.0d0/)
+   case(27)
+     niso = 1
+     iso(1:niso) = (/60/)
+     is2(1:niso) = (/10/)
+     iex(1:niso) = (/0/)
+     egm(1:niso) = (/59.000d0/)
+     qvl(1:niso) = (/460.0d0/)
+   case(28)
+     niso = 1
+     iso(1:niso) = (/61/)
+     is2(1:niso) = (/3/)
+     iex(1:niso) = (/0/)
+     egm(1:niso) = (/67.419d0/)
+     qvl(1:niso) = (/162.0d0/)
+   case(30)
+     niso = 1
+     iso(1:niso) = (/67/)
+     is2(1:niso) = (/5/)
+     iex(1:niso) = (/0/)
+     egm(1:niso) = (/93.310d0/)
+     qvl(1:niso) = (/122.0d0/)
+   case(32)
+     niso = 1
+     iso(1:niso) = (/73/)
+     is2(1:niso) = (/9/)
+     iex(1:niso) = (/0/)
+     egm(1:niso) = (/13.263d0/)
+     qvl(1:niso) = (/-196.0d0/)
+   case(36)
+     niso = 2
+     iso(1:niso) = (/81,83/)
+     is2(1:niso) = (/7,9/)
+     iex(1:niso) = (/0,0/)
+     egm(1:niso) = (/190.000d0,9.401d0/)
+     qvl(1:niso) = (/644.0d0,259.0d0/)
+   case(41)
+     niso = 2
+     iso(1:niso) = (/91,92/)
+     is2(1:niso) = (/9,14/)
+     iex(1:niso) = (/0,0/)
+     egm(1:niso) = (/105.000d0,135.000d0/)
+     qvl(1:niso) = (/-250.0d0,-350.0d0/)
+   case(43)
+     niso = 1
+     iso(1:niso) = (/99/)
+     is2(1:niso) = (/9/)
+     iex(1:niso) = (/0/)
+     egm(1:niso) = (/141.000d0/)
+     qvl(1:niso) = (/-129.0d0/)
+   case(44)
+     niso = 2
+     iso(1:niso) = (/99,101/)
+     is2(1:niso) = (/3,5/)
+     iex(1:niso) = (/1,0/)
+     egm(1:niso) = (/89.360d0,127.200d0/)
+     qvl(1:niso) = (/231.0d0,457.0d0/)
+   case(47)
+     niso = 2
+     iso(1:niso) = (/107,109/)
+     is2(1:niso) = (/7,7/)
+     iex(1:niso) = (/1,1/)
+     egm(1:niso) = (/93.000d0,88.000d0/)
+     qvl(1:niso) = (/980.0d0,1020.0d0/)
+   case(50)
+     niso = 1
+     iso(1:niso) = (/119/)
+     is2(1:niso) = (/3/)
+     iex(1:niso) = (/1/)
+     egm(1:niso) = (/23.870d0/)
+     qvl(1:niso) = (/-132.0d0/)
+   case(51)
+     niso = 1
+     iso(1:niso) = (/121/)
+     is2(1:niso) = (/5/)
+     iex(1:niso) = (/0/)
+     egm(1:niso) = (/37.130d0/)
+     qvl(1:niso) = (/-543.0d0/)
+   case(52)
+     niso = 1
+     iso(1:niso) = (/125/)
+     is2(1:niso) = (/3/)
+     iex(1:niso) = (/1/)
+     egm(1:niso) = (/35.493d0/)
+     qvl(1:niso) = (/-310.0d0/)
+   case(53)
+     niso = 2
+     iso(1:niso) = (/127,129/)
+     is2(1:niso) = (/5,7/)
+     iex(1:niso) = (/0,0/)
+     egm(1:niso) = (/58.000d0,27.770d0/)
+     qvl(1:niso) = (/-688.22d0,-483.0d0/)
+   case(54)
+     niso = 2
+     iso(1:niso) = (/129,131/)
+     is2(1:niso) = (/3,3/)
+     iex(1:niso) = (/1,0/)
+     egm(1:niso) = (/40.000d0,164.000d0/)
+     qvl(1:niso) = (/-393.0d0,-114.6d0/)
+   case(55)
+     niso = 2
+     iso(1:niso) = (/133,134/)
+     is2(1:niso) = (/7,8/)
+     iex(1:niso) = (/0,0/)
+     egm(1:niso) = (/81.000d0,11.000d0/)
+     qvl(1:niso) = (/-3.43d0,370.0d0/)
+   case(57)
+     niso = 2
+     iso(1:niso) = (/137,138/)
+     is2(1:niso) = (/7,10/)
+     iex(1:niso) = (/0,0/)
+     egm(1:niso) = (/10.000d0,73.000d0/)
+     qvl(1:niso) = (/210.0d0,450.0d0/)
+   case(59)
+     niso = 1
+     iso(1:niso) = (/141/)
+     is2(1:niso) = (/5/)
+     iex(1:niso) = (/0/)
+     egm(1:niso) = (/145.000d0/)
+     qvl(1:niso) = (/-58.9d0/)
+   case(60)
+     niso = 1
+     iso(1:niso) = (/145/)
+     is2(1:niso) = (/7/)
+     iex(1:niso) = (/0/)
+     egm(1:niso) = (/67.100d0/)
+     qvl(1:niso) = (/-330.0d0/)
+   case(61)
+     niso = 1
+     iso(1:niso) = (/147/)
+     is2(1:niso) = (/7/)
+     iex(1:niso) = (/0/)
+     egm(1:niso) = (/91.000d0/)
+     qvl(1:niso) = (/740.0d0/)
+   case(62)
+     niso = 3
+     iso(1:niso) = (/147,149,151/)
+     is2(1:niso) = (/7,7,5/)
+     iex(1:niso) = (/0,0,0/)
+     egm(1:niso) = (/121.000d0,22.490d0,92.000d0/)
+     qvl(1:niso) = (/-259.0d0,75.0d0,710.0d0/)
+   case(63)
+     niso = 3
+     iso(1:niso) = (/151,153,155/)
+     is2(1:niso) = (/5,5,5/)
+     iex(1:niso) = (/0,0,0/)
+     egm(1:niso) = (/21.532d0,83.000d0,104.000d0/)
+     qvl(1:niso) = (/903.0d0,2412.0d0,2490.0d0/)
+   case(64)
+     niso = 2
+     iso(1:niso) = (/155,157/)
+     is2(1:niso) = (/3,3/)
+     iex(1:niso) = (/0,0/)
+     egm(1:niso) = (/60.000d0,55.000d0/)
+     qvl(1:niso) = (/1270.0d0,1350.0d0/)
+   case(65)
+     niso = 1
+     iso(1:niso) = (/159/)
+     is2(1:niso) = (/3/)
+     iex(1:niso) = (/0/)
+     egm(1:niso) = (/58.000d0/)
+     qvl(1:niso) = (/1432.0d0/)
+   case(66)
+     niso = 1
+     iso(1:niso) = (/161/)
+     is2(1:niso) = (/5/)
+     iex(1:niso) = (/0/)
+     egm(1:niso) = (/25.655d0/)
+     qvl(1:niso) = (/2507.0d0/)
+   case(67)
+     niso = 1
+     iso(1:niso) = (/165/)
+     is2(1:niso) = (/7/)
+     iex(1:niso) = (/0/)
+     egm(1:niso) = (/95.000d0/)
+     qvl(1:niso) = (/3580.0d0/)
+   case(69)
+     niso = 1
+     iso(1:niso) = (/169/)
+     is2(1:niso) = (/3/)
+     iex(1:niso) = (/1/)
+     egm(1:niso) = (/8.401d0/)
+     qvl(1:niso) = (/-1200.0d0/)
+   case(70)
+     niso = 2
+     iso(1:niso) = (/171,173/)
+     is2(1:niso) = (/3,5/)
+     iex(1:niso) = (/1,0/)
+     egm(1:niso) = (/67.000d0,79.000d0/)
+     qvl(1:niso) = (/-2340.0d0,2800.0d0/)
+   case(71)
+     niso = 3
+     iso(1:niso) = (/174,175,176/)
+     is2(1:niso) = (/2,7,14/)
+     iex(1:niso) = (/0,0,0/)
+     egm(1:niso) = (/171.000d0,117.000d0,127.000d0/)
+     qvl(1:niso) = (/773.0d0,3490.0d0,4970.0d0/)
+   case(72)
+     niso = 2
+     iso(1:niso) = (/177,179/)
+     is2(1:niso) = (/7,9/)
+     iex(1:niso) = (/0,0/)
+     egm(1:niso) = (/113.000d0,123.000d0/)
+     qvl(1:niso) = (/3365.0d0,3793.0d0/)
+   case(73)
+     niso = 1
+     iso(1:niso) = (/181/)
+     is2(1:niso) = (/7/)
+     iex(1:niso) = (/0/)
+     egm(1:niso) = (/6.238d0/)
+     qvl(1:niso) = (/3170.0d0/)
+   case(74)
+     niso = 1
+     iso(1:niso) = (/183/)
+     is2(1:niso) = (/3/)
+     iex(1:niso) = (/1/)
+     egm(1:niso) = (/47.000d0/)
+     qvl(1:niso) = (/-1800.0d0/)
+   case(75)
+     niso = 2
+     iso(1:niso) = (/185,187/)
+     is2(1:niso) = (/5,5/)
+     iex(1:niso) = (/0,0/)
+     egm(1:niso) = (/125.000d0,134.000d0/)
+     qvl(1:niso) = (/2180.0d0,2070.0d0/)
+   case(76)
+     niso = 1
+     iso(1:niso) = (/189/)
+     is2(1:niso) = (/3/)
+     iex(1:niso) = (/0/)
+     egm(1:niso) = (/36.000d0/)
+     qvl(1:niso) = (/856.0d0/)
+   case(77)
+     niso = 2
+     iso(1:niso) = (/191,193/)
+     is2(1:niso) = (/3,3/)
+     iex(1:niso) = (/0,0/)
+     egm(1:niso) = (/92.400d0,73.030d0/)
+     qvl(1:niso) = (/816.0d0,751.0d0/)
+   case(79)
+     niso = 1
+     iso(1:niso) = (/197/)
+     is2(1:niso) = (/3/)
+     iex(1:niso) = (/0/)
+     egm(1:niso) = (/77.350d0/)
+     qvl(1:niso) = (/547.0d0/)
+   case(80)
+     niso = 1
+     iso(1:niso) = (/199,201/)
+     is2(1:niso) = (/5,3/)
+     iex(1:niso) = (/1,0/)
+     egm(1:niso) = (/158.000d0,32.000d0/)
+     qvl(1:niso) = (/950.0d0,387.0d0/)
+   case(88)
+     niso = 1
+     iso(1:niso) = (/223/)
+     is2(1:niso) = (/3/)
+     iex(1:niso) = (/0/)
+     egm(1:niso) = (/50.000d0/)
+     qvl(1:niso) = (/1220.0d0/)
+   case(91)
+     niso = 1
+     iso(1:niso) = (/231/)
+     is2(1:niso) = (/3/)
+     iex(1:niso) = (/0/)
+     egm(1:niso) = (/84.000d0/)
+     qvl(1:niso) = (/-1720.0d0/)
+   case(92)
+     niso = 2
+     iso(1:niso) = (/233,235/)
+     is2(1:niso) = (/5,7/)
+     iex(1:niso) = (/0,0/)
+     egm(1:niso) = (/40.000d0,46.000d0/)
+     qvl(1:niso) = (/3663.0d0,4936.0d0/)
+   case(93)
+     niso = 1
+     iso(1:niso) = (/237/)
+     is2(1:niso) = (/5/)
+     iex(1:niso) = (/0/)
+     egm(1:niso) = (/59.540d0/)
+     qvl(1:niso) = (/3886.0d0/)
+   case(94)
+     niso = 1
+     iso(1:niso) = (/239/)
+     is2(1:niso) = (/3/)
+     iex(1:niso) = (/1/)
+     egm(1:niso) = (/8.000d0/)
+     qvl(1:niso) = (/-2319.0d0/)
+   case(95)
+     niso = 1
+     iso(1:niso) = (/243/)
+     is2(1:niso) = (/5/)
+     iex(1:niso) = (/0/)
+     egm(1:niso) = (/84.000d0/)
+     qvl(1:niso) = (/4200.0d0/)
+ end select
+
+ return
+end subroutine Mosslib
+
+!%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+!
+! The delta-R value in Mossbauer nuclear quadrupole splitting:
+!     3 (m_max^2 - m_min^2) / [4 I (2 I - 1)], with m_max = I and m_min = 0 or 1/2.
+!
+! is2  : twice the nuclear spin quantum number
+!
+!     is2        dR
+!     2         3/4
+!     3, 4      1/2
+!     5, 6      9/20
+!     7, 8      3/7
+!
+!%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function dRval_dEq(is2)
+ implicit real(kind=8) (a-h,o-z)
+
+ dRval_dEq = 0.0d0
+ if(is2 < 2) return
+
+ qis = dble(is2) * 0.5d0
+ a = qis * qis
+ if(mod(is2,2) /= 0) a = a - 0.25d0
+ a = a * 3.0d0
+ b = 4.0d0 * qis * (qis + qis - 1.0d0)
+ dRval_dEq = a / b
+
+ return
+end function dRval_dEq
 
 !%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 !
