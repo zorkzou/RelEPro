@@ -1518,8 +1518,9 @@ subroutine efgcalc(iout,mpatt,irelc,natom,iham,minza,ipop,iza,za,rms,xyz,maxtyp,
    else
      write(iout,"(29x,'N.A.')")
    end if
+   write(iout,*)
 
-   write(iout,"(/,26x,'<< Mossbauer Nuclear Quadrupole Splitting >>')")
+   write(iout,"(26x,'<< Mossbauer Nuclear Quadrupole Splitting >>')")
    call Mosslib(iza(iatom),niso,iziso,is2,iex,egm,qvl)
    if(niso > 0) then
      do i = 1, niso  ! niso <= maxiso
@@ -1539,6 +1540,7 @@ subroutine efgcalc(iout,mpatt,irelc,natom,iham,minza,ipop,iza,za,rms,xyz,maxtyp,
    else
      write(iout,"(29x,'N.A.')")
    end if
+   write(iout,"(/)")
 
    if(ipop0 == 1) then
      write(iout,"(/,11x,'#MO      Irrep  S',10x,'Ene',8x,'Occ',12x,'dV/dQ sum',10x,'dV/dQ population on atoms')")
